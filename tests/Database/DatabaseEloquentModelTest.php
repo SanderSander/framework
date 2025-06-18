@@ -316,7 +316,8 @@ class DatabaseEloquentModelTest extends TestCase
         ];
 
         $model = new EloquentModelCastingStub;
-        $model->setRawAttributes(['asFluentAttribute' => json_encode($value)]);
+        // It's not guaranteed that the database returns a json string in the same format as PHP
+        $model->setRawAttributes(['asFluentAttribute' => '{"address": {"street": "test_street", "city": "test_city"}}']);
         $model->syncOriginal();
 
         $this->assertInstanceOf(Fluent::class, $model->asFluentAttribute);
