@@ -32,7 +32,7 @@ class AsFluent implements Castable
 
             public function compare(Model $model, string $key, mixed $firstValue, mixed $secondValue)
             {
-                return Json::decode($firstValue) === Json::decode($secondValue);
+                return Json::decode($firstValue, false) == Json::decode($secondValue, false);
             }
         };
     }
